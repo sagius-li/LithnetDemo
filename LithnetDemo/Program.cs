@@ -45,7 +45,7 @@ namespace LithnetDemo
             {
                 CultureInfo locale = null;
                 IEnumerable<string> attributes = new string[] { "DisplayName" };
-
+                
                 if (attributes != null)
                 {
                     p = client.GetResourcesPaged(filter, pageSize, attributes, locale);
@@ -79,6 +79,11 @@ namespace LithnetDemo
 
                 ResourceManagementClient client = new ResourceManagementClient();
                 client.RefreshSchema();
+
+                ResourceObject resourceObject = client.GetResource(
+                    "418fc8b4-d5b3-4a0a-87c6-0984812a6781", 
+                    new string[] { "DisplayName", "CreatedTime", "Manager" },
+                    new CultureInfo("de-DE"), true);
 
                 SearchResultPager p = getSearchResultPager(client, filter, pageSize, token);
 
